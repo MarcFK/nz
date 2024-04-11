@@ -21,3 +21,8 @@ marker.bindPopup(`
         <li>Länge: ${lng.toFixed(5)}</li>
     </ul>
 `).openPopup();
+
+L.control.scale({
+    imperial: false,
+    maxWidth: 150
+}).addTo(map);
