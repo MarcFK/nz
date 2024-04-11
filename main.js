@@ -2,7 +2,10 @@ let lat = -43.463;
 let lng = 170.19;
 let zoom = 13
 
-let map = L.map('map').setView([lat, lng], zoom);
+let map = L.map('map', {
+    center: [lat, lng],
+    zoom: zoom
+});
 
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
