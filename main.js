@@ -12,7 +12,7 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 
-let marker = L.marker([lat, lng]).addTo(map);
+/* let marker = L.marker([lat, lng]).addTo(map);
 
 marker.bindPopup(`
     <h2>Franz Josef Glacier</h2>
@@ -21,8 +21,28 @@ marker.bindPopup(`
         <li>Länge: ${lng.toFixed(5)}</li>
     </ul>
 `).openPopup();
+*/
 
 L.control.scale({
     imperial: false,
     maxWidth: 150
+}).addTo(map);
+
+let jsonPunkt = {
+    "type": "Feature",
+    "geometry": {
+        "type": "Point",
+        "coordinates": [lng, lat]
+    },
+    "properties": {
+        "name": "Franz Josef Glacier"
+    }
+};
+
+L.geoJSON(jsonPunkt, {
+    style: function (feature) {
+        return {color: feature.properties.color};
+    }
+}).bindPopup(function (layer) {
+    return layer.feature.properties.name;
 }).addTo(map);
